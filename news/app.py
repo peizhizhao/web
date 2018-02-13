@@ -1,11 +1,13 @@
 import os 
 import json 
-from flask import Flask,render_template,abort
+from flask import render_template
+from flask import abort
+from flask import Flask
+
 
 app=Flask(__name__)
 
 class Files(object):
-    #定义一个文件类
     directory=os.path.join(os.path.abspath(os.path.dirname(__name__)),'..','files')
     #os.path.join()函数-将多个路径组合后返回\\join()——连接字符串数组
     def __init__(self):
@@ -13,7 +15,7 @@ class Files(object):
 
     def _read_all_files(self):
         result={}
-        for filename in os.listdir(self.dircetory):
+        for filename in os.listdir(self.directory):
             file_path=os.path.join(self.directory,filename)
             with open(file_path) as f:
                 result[filename[:-5]]=json.load(f)
