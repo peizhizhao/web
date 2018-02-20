@@ -1,3 +1,4 @@
+#-*- coding=UTF-8 -*-
 import os 
 import json 
 from flask import render_template
@@ -50,7 +51,8 @@ def not_found(error):
     return render_template('404.html'),404
 
 if __name__=='__main__':
-    app.run()
+    app.debug=True
+    app.run(port=3000)
 
 
 
