@@ -21,7 +21,6 @@ class Files(object):
             with open(file_path) as f:
                 result[filename[:-5]]=json.load(f)
         return result
-    
     def get_title_list(self):
         return [item['title'] for item in self._files.values()]
 
@@ -36,9 +35,9 @@ files=Files()
 @app.route('/')
 def index():
     #show title name's table 
-    return render_template('index.html',title_list=file.get_title_list())
+    return render_template('index.html',title_list=files.get_title_list())
 
-@app.route('/files/<filename>')
+@app.route('/files/shiyanlou.json')
 def file(filename):
     # read and show 'filename.json'  内容
     file_item=files.get_by_filename(filename)
@@ -48,7 +47,7 @@ def file(filename):
 
 @app.errorhandler(404)
 def not_found(error):
-    return render_template('404.html'),404
+    return render_template('/404.html'),404
 
 if __name__=='__main__':
     app.debug=True
