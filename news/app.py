@@ -35,15 +35,15 @@ files=Files()
 @app.route('/')
 def index():
     #show title name's table 
-    return render_template('index.html',title_list=files.get_title_list())
+    return render_template('/index.html',title_list=files.get_title_list())
 
-@app.route('/files/shiyanlou.json')
-def file(filename):
+@app.route('/files/helloshiyanlou.json')
+def file(helloshiyanlou):
     # read and show 'filename.json'  内容
-    file_item=files.get_by_filename(filename)
+    file_item=files.get_by_filename(helloshiyanlou)
     if not file_item:
         abort(404)
-    return render_tempalte('file.html',file_item=file_item)
+    return render_tempalte('/file.html',file_item=file_item)
 
 @app.errorhandler(404)
 def not_found(error):
